@@ -1,0 +1,104 @@
+# Chinese (China) translation for xdg-desktop-portal-gtk.
+# Copyright (C) 2016 xdg-desktop-portal-gtk's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gtk package.
+# Mingye Wang <arthur2e5@aosc.xyz>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gtk master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-18 11:49-0500\n"
+"PO-Revision-Date: 2016-10-28 18:05-0400\n"
+"Last-Translator: Mingye Wang (Arthur2e5) <arthur200126@gmail.com>\n"
+"Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7\n"
+
+#: src/access.c:271
+msgid "Deny Access"
+msgstr "拒绝访问"
+
+#: src/access.c:274
+msgid "Grant Access"
+msgstr "允许访问"
+
+#: src/accountdialog.c:166
+msgid "Select an Image"
+msgstr ""
+
+#: src/accountdialog.c:169
+#, fuzzy
+msgid "Cancel"
+msgstr "取消(_C)"
+
+#: src/accountdialog.c:170
+#, fuzzy
+msgid "Select"
+msgstr "选择(_S)"
+
+#: src/accountdialog.c:171
+msgid "Clear"
+msgstr ""
+
+#: src/accountdialog.c:185
+msgid "Images"
+msgstr ""
+
+#: src/accountdialog.c:260
+#, c-format
+msgid "Share your personal information with %s?"
+msgstr ""
+
+#: src/accountdialog.c:263
+#, fuzzy
+msgid "Share your personal information with the requesting application?"
+msgstr "与正发出请求的应用程序共享此截图吗？"
+
+#: src/accountdialog.ui:10
+msgid "Share Details"
+msgstr ""
+
+#: src/accountdialog.ui:14 src/appchooser.c:179 src/appchooserdialog.ui:14
+#: src/filechooser.c:364 src/screenshotdialog.ui:14
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: src/accountdialog.ui:22 src/screenshotdialog.ui:25
+msgid "_Share"
+msgstr "分享(_S)"
+
+#: src/accountdialog.ui:148
+msgid "Make changes before sharing the information"
+msgstr ""
+
+#: src/appchooser.c:169
+msgid "_Select"
+msgstr "选择(_S)"
+
+#: src/appchooser.c:171 src/appchooserdialog.ui:10
+msgid "Open With"
+msgstr "打开方式"
+
+#: src/appchooser.c:173
+msgid "Select application"
+msgstr "选择应用程序"
+
+#: src/appchooserdialog.ui:26 src/filechooser.c:362
+msgid "_Open"
+msgstr "打开(_O)"
+
+#: src/screenshotdialog.c:93
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "要与 %s 分享截屏吗？"
+
+#: src/screenshotdialog.c:96
+msgid "Share this screenshot with the requesting application?"
+msgstr "与正发出请求的应用程序共享此截图吗？"
+
+#: src/screenshotdialog.ui:10
+msgid "Screenshot"
+msgstr "截屏"

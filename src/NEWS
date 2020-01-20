@@ -1,0 +1,54 @@
+Major changes in 0.5
+====================
+
+* Add Wayland transient parent support to all portals
+
+* Support non-exported actions in the notification portal
+
+* Add image preview to the filechooser portal
+
+* Added backend interfaces:
+ - org.freedesktop.impl.portal.Account
+
+* Translation updates
+ Czech
+ Serbian
+ Simplified Chinese
+ Swedish
+
+
+Major changes in 0.3
+====================
+
+* Add Wayland support for transient-for dialogs
+
+* Translation updates:
+ Brazilian Portuguese
+ Hungarian
+ Slovak
+ Ukrainian
+
+
+Major changes in 0.2
+====================
+
+* Make app chooser use app ids without .desktop
+
+* Added backend interfaces:
+ - org.freedesktop.impl.portal.Access
+
+* Translation updates
+ German
+ Polish
+
+
+Initial release 0.1
+===================
+
+Implemented portal backend interfaces:
+ * org.freedesktop.impl.portal.FileChooser
+ * org.freedesktop.impl.portal.Print
+ * org.freedesktop.impl.portal.AppChooser
+ * org.freedesktop.impl.portal.Screenshot
+ * org.freedesktop.impl.portal.Inhibit
+ * org.freedestkop.impl.portal.Notification

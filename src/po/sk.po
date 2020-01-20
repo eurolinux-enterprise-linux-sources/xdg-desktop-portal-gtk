@@ -1,0 +1,105 @@
+# Slovak translation for xdg-desktop-portal-gtk.
+# Copyright (C) 2016 xdg-desktop-portal-gtk's COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdg-desktop-portal-gtk package.
+# Dušan Kazik <prescott66@gmail.com>, 2016.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gtk master\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-18 11:49-0500\n"
+"PO-Revision-Date: 2016-08-08 09:34+0200\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
+"X-Generator: Poedit 1.8.8\n"
+
+#: src/access.c:271
+msgid "Deny Access"
+msgstr "Zamietnuť prístup"
+
+#: src/access.c:274
+msgid "Grant Access"
+msgstr "Udeliť prístup"
+
+#: src/accountdialog.c:166
+msgid "Select an Image"
+msgstr ""
+
+#: src/accountdialog.c:169
+#, fuzzy
+msgid "Cancel"
+msgstr "_Zrušiť"
+
+#: src/accountdialog.c:170
+#, fuzzy
+msgid "Select"
+msgstr "Vy_brať"
+
+#: src/accountdialog.c:171
+msgid "Clear"
+msgstr ""
+
+#: src/accountdialog.c:185
+msgid "Images"
+msgstr ""
+
+#: src/accountdialog.c:260
+#, c-format
+msgid "Share your personal information with %s?"
+msgstr ""
+
+#: src/accountdialog.c:263
+#, fuzzy
+msgid "Share your personal information with the requesting application?"
+msgstr "Sprístupniť túto snímku obrazovky požadovanej aplikácii?"
+
+#: src/accountdialog.ui:10
+msgid "Share Details"
+msgstr ""
+
+#: src/accountdialog.ui:14 src/appchooser.c:179 src/appchooserdialog.ui:14
+#: src/filechooser.c:364 src/screenshotdialog.ui:14
+msgid "_Cancel"
+msgstr "_Zrušiť"
+
+#: src/accountdialog.ui:22 src/screenshotdialog.ui:25
+msgid "_Share"
+msgstr "_Sprístupniť"
+
+#: src/accountdialog.ui:148
+msgid "Make changes before sharing the information"
+msgstr ""
+
+#: src/appchooser.c:169
+msgid "_Select"
+msgstr "Vy_brať"
+
+#: src/appchooser.c:171 src/appchooserdialog.ui:10
+msgid "Open With"
+msgstr "Otvoriť pomocou"
+
+#: src/appchooser.c:173
+msgid "Select application"
+msgstr "Výber aplikácie"
+
+#: src/appchooserdialog.ui:26 src/filechooser.c:362
+msgid "_Open"
+msgstr "_Otvoriť"
+
+#: src/screenshotdialog.c:93
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr "Sprístupniť túto snímku obrazovky aplikácii %s?"
+
+#: src/screenshotdialog.c:96
+msgid "Share this screenshot with the requesting application?"
+msgstr "Sprístupniť túto snímku obrazovky požadovanej aplikácii?"
+
+#: src/screenshotdialog.ui:10
+msgid "Screenshot"
+msgstr "Snímka obrazovky"

@@ -1,0 +1,101 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Copyright © 2016 Red Hat
+# This file is distributed under the same license as the xdg-desktop-portal-gtk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: xdg-desktop-portal-gtk 0.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-18 11:49-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/access.c:271
+msgid "Deny Access"
+msgstr ""
+
+#: src/access.c:274
+msgid "Grant Access"
+msgstr ""
+
+#: src/accountdialog.c:166
+msgid "Select an Image"
+msgstr ""
+
+#: src/accountdialog.c:169
+msgid "Cancel"
+msgstr ""
+
+#: src/accountdialog.c:170
+msgid "Select"
+msgstr ""
+
+#: src/accountdialog.c:171
+msgid "Clear"
+msgstr ""
+
+#: src/accountdialog.c:185
+msgid "Images"
+msgstr ""
+
+#: src/accountdialog.c:260
+#, c-format
+msgid "Share your personal information with %s?"
+msgstr ""
+
+#: src/accountdialog.c:263
+msgid "Share your personal information with the requesting application?"
+msgstr ""
+
+#: src/accountdialog.ui:10
+msgid "Share Details"
+msgstr ""
+
+#: src/accountdialog.ui:14 src/appchooser.c:179 src/appchooserdialog.ui:14
+#: src/filechooser.c:364 src/screenshotdialog.ui:14
+msgid "_Cancel"
+msgstr ""
+
+#: src/accountdialog.ui:22 src/screenshotdialog.ui:25
+msgid "_Share"
+msgstr ""
+
+#: src/accountdialog.ui:148
+msgid "Make changes before sharing the information"
+msgstr ""
+
+#: src/appchooser.c:169
+msgid "_Select"
+msgstr ""
+
+#: src/appchooser.c:171 src/appchooserdialog.ui:10
+msgid "Open With"
+msgstr ""
+
+#: src/appchooser.c:173
+msgid "Select application"
+msgstr ""
+
+#: src/appchooserdialog.ui:26 src/filechooser.c:362
+msgid "_Open"
+msgstr ""
+
+#: src/screenshotdialog.c:93
+#, c-format
+msgid "Share this screenshot with %s?"
+msgstr ""
+
+#: src/screenshotdialog.c:96
+msgid "Share this screenshot with the requesting application?"
+msgstr ""
+
+#: src/screenshotdialog.ui:10
+msgid "Screenshot"
+msgstr ""
