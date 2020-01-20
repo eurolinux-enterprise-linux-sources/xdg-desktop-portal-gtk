@@ -102,6 +102,28 @@ add_choices (FileDialogHandle *handle,
 }
 
 static void
+add_recent_entry (const char *app_id,
+                  const char *uri)
+{
+  GtkRecentManager *recent;
+  GtkRecentData data;
+
+  /* These fields are ignored by everybody, so it is not worth
+   * spending effort on filling them out. Just use defaults.
+   */
+  data.display_name = NULL;
+  data.description = NULL;
+  data.mime_type = "application/octet-stream";
+  data.app_name = (char *)app_id;
+  data.app_exec = "gio open %u";
+  data.groups = NULL;
+  data.is_private = FALSE;
+
+  recent = gtk_recent_manager_get_default ();
+  gtk_recent_manager_add_full (recent, uri, &data);
+}
+
+static void
 send_response (FileDialogHandle *handle)
 {
   GVariantBuilder uri_builder;
@@ -112,7 +134,10 @@ send_response (FileDialogHandle *handle)
 
   g_variant_builder_init (&uri_builder, G_VARIANT_TYPE_STRING_ARRAY);
   for (l = handle->uris; l; l = l->next)
-    g_variant_builder_add (&uri_builder, "s", l->data);
+    {
+      add_recent_entry (handle->request->app_id, l->data);
+      g_variant_builder_add (&uri_builder, "s", l->data);
+    }
 
   g_variant_builder_add (&opt_builder, "{sv}", "uris", g_variant_builder_end (&uri_builder));
   g_variant_builder_add (&opt_builder, "{sv}", "writable", g_variant_new_boolean (handle->allow_write));
@@ -290,23 +315,24 @@ handle_close (XdpImplRequest *object,
 static void
 update_preview_cb (GtkFileChooser *file_chooser, gpointer data)
 {
-  GtkWidget *preview;
-  char *filename;
-  GdkPixbuf *pixbuf;
-  gboolean have_preview;
+  GtkWidget *preview = GTK_WIDGET (data);
+  g_autofree char *filename = NULL;
+  g_autoptr(GdkPixbuf) pixbuf = NULL;
 
-  preview = GTK_WIDGET (data);
   filename = gtk_file_chooser_get_preview_filename (file_chooser);
+  if (filename)
+    pixbuf = gdk_pixbuf_new_from_file_at_size (filename, 128, 128, NULL);
 
-  pixbuf = gdk_pixbuf_new_from_file_at_size (filename, 128, 128, NULL);
-  have_preview = (pixbuf != NULL);
-  g_free (filename);
+  if (pixbuf)
+    {
+      g_autoptr(GdkPixbuf) tmp = NULL;
+
+      tmp = gdk_pixbuf_apply_embedded_orientation (pixbuf);
+      g_set_object (&pixbuf, tmp);
+    }
 
   gtk_image_set_from_pixbuf (GTK_IMAGE (preview), pixbuf);
-  if (pixbuf)
-    g_object_unref (pixbuf);
-
-  gtk_file_chooser_set_preview_widget_active (file_chooser, have_preview);
+  gtk_file_chooser_set_preview_widget_active (file_chooser, pixbuf != NULL);
 }
 
 static gboolean
@@ -453,9 +479,9 @@ handle_open (XdpImplFileChooser *object,
        * In a sandboxed situation, the current folder and current file
        * are likely in the fuse filesystem
        */
-      if (g_variant_lookup (arg_options, "current_folder", "&ay", &path))
+      if (g_variant_lookup (arg_options, "current_folder", "^&ay", &path))
         gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), path);
-      if (g_variant_lookup (arg_options, "current_file", "&ay", &path))
+      if (g_variant_lookup (arg_options, "current_file", "^&ay", &path))
         gtk_file_chooser_select_filename (GTK_FILE_CHOOSER (dialog), path);
     }
 

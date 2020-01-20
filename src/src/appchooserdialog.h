@@ -22,13 +22,15 @@
 
 #include <gtk/gtk.h>
 
-G_DECLARE_FINAL_TYPE (AppChooserDialog, app_chooser_dialog, APP, CHOOSER_DIALOG, GtkWindow)
+#define APP_TYPE_CHOOSER_DIALOG (app_chooser_dialog_get_type ())
+#define APP_CHOOSER_DIALOG(object) (G_TYPE_CHECK_INSTANCE_CAST (object, APP_TYPE_CHOOSER_DIALOG, AppChooserDialog))
+
+typedef struct _AppChooserDialog AppChooserDialog;
+typedef struct _AppChooserDialogClass AppChooserDialogClass;
 
 AppChooserDialog * app_chooser_dialog_new (const char **app_ids,
-                                           const char *default_id,
-                                           const char *cancel_label,
-                                           const char *accept_label,
-                                           const char *title,
-                                           const char *heading);
-void app_chooser_dialog_set_selected (AppChooserDialog *dialog,
-                                      const char *choice_id);
+                                           const char  *default_id,
+                                           const char  *content_type,
+                                           const char  *filename);
+
+GAppInfo *app_chooser_dialog_get_info (AppChooserDialog *dialog);

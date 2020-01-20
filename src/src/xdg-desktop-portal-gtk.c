@@ -49,6 +49,9 @@
 #include "inhibit.h"
 #include "access.h"
 #include "account.h"
+#include "email.h"
+#include "screencast.h"
+#include "remotedesktop.h"
 
 
 static GMainLoop *loop = NULL;
@@ -59,7 +62,7 @@ static gboolean opt_replace;
 
 static GOptionEntry entries[] = {
   { "verbose", 'v', 0, G_OPTION_ARG_NONE, &opt_verbose, "Print debug information during command processing", NULL },
-  { "replace", 'r', 0, G_OPTION_ARG_NONE, &opt_replace, "Replace", NULL },
+  { "replace", 'r', 0, G_OPTION_ARG_NONE, &opt_replace, "Replace a running instance", NULL },
   { NULL }
 };
 
@@ -130,6 +133,24 @@ on_bus_acquired (GDBusConnection *connection,
       g_warning ("error: %s\n", error->message);
       g_clear_error (&error);
     }
+
+  if (!email_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!screen_cast_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
+
+  if (!remote_desktop_init (connection, &error))
+    {
+      g_warning ("error: %s\n", error->message);
+      g_clear_error (&error);
+    }
 }
 
 static void
@@ -161,12 +182,22 @@ main (int argc, char *argv[])
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  /* Avoid even loading gvfs to avoid accidental confusion */
-  g_setenv ("GIO_USE_VFS", "local", TRUE);
+  /* Avoid pointless and confusing recursion */
+  g_unsetenv ("GTK_USE_PORTAL");
 
   gtk_init (&argc, &argv);
 
-  context = g_option_context_new ("- file chooser portal");
+  context = g_option_context_new ("- portal backends");
+  g_option_context_set_summary (context,
+      "A backend implementation for xdg-desktop-portal.");
+  g_option_context_set_description (context,
+      "xdg-desktop-portal-gtk provides D-Bus interfaces that\n"
+      "are used by xdg-desktop-portal to implement portals\n"
+      "\n"
+      "Documentation for the available D-Bus interfaces can be found at\n"
+      "https://flatpak.github.io/xdg-desktop-portal/portal-docs.html\n"
+      "\n"
+      "Please report issues at https://github.com/flatpak/xdg-desktop-portal-gtk/issues");
   g_option_context_add_main_entries (context, entries, NULL);
   if (!g_option_context_parse (context, &argc, &argv, &error))
     {
@@ -177,7 +208,7 @@ main (int argc, char *argv[])
   if (opt_verbose)
     g_log_set_handler (NULL, G_LOG_LEVEL_DEBUG, message_handler, NULL);
 
-  g_set_prgname (argv[0]);
+  g_set_prgname ("xdg-desktop-portal-gtk");
 
   loop = g_main_loop_new (NULL, FALSE);
 

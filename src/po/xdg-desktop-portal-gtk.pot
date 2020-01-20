@@ -1,14 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Copyright � 2016 Red Hat
+# Copyright (C) YEAR Copyright © 2016 Red Hat
 # This file is distributed under the same license as the xdg-desktop-portal-gtk package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: xdg-desktop-portal-gtk 0.5\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-01-18 11:49-0500\n"
+"Project-Id-Version: xdg-desktop-portal-gtk 1.0.2\n"
+"Report-Msgid-Bugs-To: https://github.com/flatpak/xdg-desktop-portal-gtk/"
+"issues\n"
+"POT-Creation-Date: 2018-09-03 16:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +17,15 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: data/xdg-desktop-portal-gtk.desktop.in.in:4
+msgid "Portal"
+msgstr ""
+
+#. TRANSLATORS: Don't translate this text (this is icon name)
+#: data/xdg-desktop-portal-gtk.desktop.in.in:6
+msgid "applications-system-symbolic"
+msgstr ""
 
 #: src/access.c:271
 msgid "Deny Access"
@@ -58,12 +68,14 @@ msgstr ""
 msgid "Share Details"
 msgstr ""
 
-#: src/accountdialog.ui:14 src/appchooser.c:179 src/appchooserdialog.ui:14
-#: src/filechooser.c:364 src/screenshotdialog.ui:14
+#: src/accountdialog.ui:14 src/appchooserdialog.ui:17 src/filechooser.c:390
+#: src/remotedesktopdialog.ui:16 src/screencastdialog.ui:16
+#: src/screenshotdialog.ui:14
 msgid "_Cancel"
 msgstr ""
 
-#: src/accountdialog.ui:22 src/screenshotdialog.ui:25
+#: src/accountdialog.ui:22 src/remotedesktopdialog.ui:28
+#: src/screencastdialog.ui:28 src/screenshotdialog.ui:38
 msgid "_Share"
 msgstr ""
 
@@ -71,31 +83,139 @@ msgstr ""
 msgid "Make changes before sharing the information"
 msgstr ""
 
-#: src/appchooser.c:169
-msgid "_Select"
+#: src/appchooserdialog.c:156
+msgid "Failed to start Software"
 msgstr ""
 
-#: src/appchooser.c:171 src/appchooserdialog.ui:10
+#: src/appchooserdialog.c:395
+#, c-format
+msgid ""
+"Select an application to open “%s”. More applications are available in <a "
+"href='software'>Software.</a>"
+msgstr ""
+
+#: src/appchooserdialog.c:400
+msgid ""
+"Select an application. More applications are available in <a "
+"href='software'>Software.</a>"
+msgstr ""
+
+#: src/appchooserdialog.c:413
+#, c-format
+msgid "Unable to find an application that is able to open “%s”."
+msgstr ""
+
+#: src/appchooserdialog.c:418
+msgid "Unable to find a suitable application."
+msgstr ""
+
+#: src/appchooserdialog.ui:13
 msgid "Open With"
 msgstr ""
 
-#: src/appchooser.c:173
-msgid "Select application"
+#: src/appchooserdialog.ui:166
+msgid "No Applications Found"
 msgstr ""
 
-#: src/appchooserdialog.ui:26 src/filechooser.c:362
+#: src/appchooserdialog.ui:182
+msgid "Find Compatible Applications in Software"
+msgstr ""
+
+#: src/filechooser.c:388
 msgid "_Open"
 msgstr ""
 
-#: src/screenshotdialog.c:93
+#: src/remotedesktopdialog.c:190
+msgid "Pointer"
+msgstr ""
+
+#: src/remotedesktopdialog.c:193
+msgid "Keyboard"
+msgstr ""
+
+#: src/remotedesktopdialog.c:196
+msgid "Touch screen"
+msgstr ""
+
+#: src/remotedesktopdialog.c:303
+#, c-format
+msgid "Select devices to share with %s"
+msgstr ""
+
+#: src/remotedesktopdialog.c:308
+msgid "Select devices to share with the requesting application"
+msgstr ""
+
+#: src/remotedesktopdialog.ui:12
+msgid "Remote desktop"
+msgstr ""
+
+#: src/screencastdialog.ui:12
+msgid "Screen casting"
+msgstr ""
+
+#: src/screencastwidget.c:243
+#, c-format
+msgid "Select monitor to share with %s"
+msgstr ""
+
+#: src/screencastwidget.c:248
+msgid "Select monitor to share with the requesting application"
+msgstr ""
+
+#: src/screenshotdialog.c:422
 #, c-format
 msgid "Share this screenshot with %s?"
 msgstr ""
 
-#: src/screenshotdialog.c:96
+#: src/screenshotdialog.c:426
 msgid "Share this screenshot with the requesting application?"
 msgstr ""
 
 #: src/screenshotdialog.ui:10
 msgid "Screenshot"
+msgstr ""
+
+#: src/screenshotdialog.ui:30
+msgid "_Options…"
+msgstr ""
+
+#: src/screenshotdialog.ui:55
+msgid "Take _Screenshot"
+msgstr ""
+
+#: src/screenshotdialog.ui:111
+msgid "Take Screenshot"
+msgstr ""
+
+#: src/screenshotdialog.ui:122
+msgid "Grab the whole sc_reen"
+msgstr ""
+
+#: src/screenshotdialog.ui:133
+msgid "Grab the current _window"
+msgstr ""
+
+#: src/screenshotdialog.ui:144
+msgid "Select _area to grab"
+msgstr ""
+
+#: src/screenshotdialog.ui:158
+msgid "Grab after a _delay of"
+msgstr ""
+
+#: src/screenshotdialog.ui:171
+msgid "seconds"
+msgstr ""
+
+#: src/screenshotdialog.ui:181
+msgid "Effects"
+msgstr ""
+
+#: src/screenshotdialog.ui:192
+msgid "Include _pointer"
+msgstr ""
+
+#: src/screenshotdialog.ui:201
+msgid "Include the window _border"
 msgstr ""

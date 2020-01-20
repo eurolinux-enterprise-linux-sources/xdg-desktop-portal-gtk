@@ -1,3 +1,118 @@
+Major changes in 1.0.2
+======================
+
+* filechooser: Add returned files to recent files
+* inhibit: Implement screensaver monitoring
+
+Major changes in 1.0.1
+======================
+
+* Use gvfs
+* Unset GTK_USE_PORTAL
+* Require xdg-desktop-portal 1.0
+* Translation updates
+
+Major changes in 1.0
+====================
+
+* screenshot: Add a PickColor method
+* screencast: Some UI improvements
+* Improve --help output
+
+Major changes in 0.99
+=====================
+
+* Shorten excessively long filenames in the app chooser dialog
+* Fixes for the screencast portal
+* Support more email clients in the Email portal
+* Fix a crash in the print portal
+
+Major changes in 0.11
+=====================
+
+* Add dependency on gio-unix-2.0.
+* remotedesktop: Add support for the 'finish' flag of NotifyPointerAxis.
+* remotedesktop: Correctly expose device types supporting remote control.
+* print: Add a 'Print Preview' button (requires evince-previewer).
+* screenshot: Make sure the dialog is shown in the interactive case.
+
+* Translation updates
+ Brazilian Portuguese
+ Chinese (Taiwan)
+ Czech
+ Hungarian
+ Indonesian
+ Italian
+ Lithuanian
+ Spanish
+ Ukrainian
+
+Major changes in 0.10
+=====================
+
+ * Fix critical in file chooser
+ * Add options to screenshot portals
+ * Add screencast and remote portal implementations
+
+Major changes in 0.9
+====================
+
+* Improve the app picker ui
+
+* Fix error reporting in the email portal
+
+* Translation updates
+ Brazilian Portuguese
+ Czech
+ Galician
+ Indonesian
+ Italian
+ Polish
+ Slovak
+ Turkish
+ Ukrainian
+
+* Version 0.8 was skipped
+
+Major changes in 0.7
+====================
+
+* Add a more complete app chooser dialog
+
+* Fix problems with the notification portal
+
+* Translation updates:
+ Brazilian Portuguese
+ Czech
+ Italian
+ Polish
+
+
+Major changes in 0.6
+====================
+
+* Implement the portal for composing email. Currently supported
+  clients: evolution, thunderbird
+
+* Install a systemd service file to put xdg-desktop-portal-gtk
+  into its own cgroup
+
+* Install a desktop file to provide an icon and name for
+  xdg-desktop-portal-gtk
+
+* Apply image rotations in the file chooser preview
+
+* Add a new app chooser dialog
+
+* Translation updates
+ Brazilian Portuguese
+ French
+ German
+ Hungarian
+ Swedish
+ Ukrainian
+
+
 Major changes in 0.5
 ====================
 

@@ -1,5 +1,6 @@
 dbus_built_sources = src/xdg-desktop-portal-dbus.c src/xdg-desktop-portal-dbus.h
 BUILT_SOURCES += $(dbus_built_sources)
+CLEANFILES += $(dbus_built_sources)
 
 $(dbus_built_sources): src/Makefile.am.inc
 	$(AM_V_GEN) $(GDBUS_CODEGEN)			\
@@ -8,6 +9,7 @@ $(dbus_built_sources): src/Makefile.am.inc
 	--generate-c-code src/xdg-desktop-portal-dbus	\
 	--annotate "org.freedesktop.impl.portal.Print.Print()" "org.gtk.GDBus.C.UnixFD" "true" \
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Request.xml \
+	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Session.xml \
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.FileChooser.xml \
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.AppChooser.xml \
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Print.xml \
@@ -16,17 +18,25 @@ $(dbus_built_sources): src/Makefile.am.inc
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Inhibit.xml \
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Access.xml \
 	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Account.xml \
+	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.Email.xml \
+	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.ScreenCast.xml \
+	 $(DESKTOP_PORTAL_INTERFACES_DIR)/org.freedesktop.impl.portal.RemoteDesktop.xml \
 	$(NULL)
 
 shell_built_sources = src/shell-dbus.c src/shell-dbus.h
 BUILT_SOURCES += $(shell_built_sources)
+CLEANFILES += $(shell_built_sources)
 
 $(shell_built_sources): src/Makefile.am.inc
 	$(AM_V_GEN) $(GDBUS_CODEGEN)			                \
 	--generate-c-code src/shell-dbus	                        \
+	$(top_srcdir)/data/org.gnome.Mutter.DisplayConfig.xml	        \
+	$(top_srcdir)/data/org.gnome.Mutter.ScreenCast.xml	        \
+	$(top_srcdir)/data/org.gnome.Mutter.RemoteDesktop.xml	        \
 	$(top_srcdir)/data/org.gnome.Shell.Screenshot.xml	        \
 	$(top_srcdir)/data/org.gtk.Notifications.xml			\
 	$(top_srcdir)/data/org.gnome.SessionManager.xml		        \
+	$(top_srcdir)/data/org.gnome.ScreenSaver.xml			\
 	$(top_srcdir)/data/org.freedesktop.ScreenSaver.xml		\
 	$(top_srcdir)/data/org.freedesktop.Accounts.xml		        \
 	$(top_srcdir)/data/org.freedesktop.Accounts.User.xml            \
@@ -37,6 +47,7 @@ resource_files = $(shell $(GLIB_COMPILE_RESOURCES) --sourcedir=$(top_srcdir)/src
 src/resources.c: src/xdg-desktop-portal-gtk.gresource.xml $(resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) $< \
 		--target=$@ --sourcedir=$(top_srcdir)/src --c-name _xdg_desktop --generate-source
+CLEANFILES += src/resources.c
 
 EXTRA_DIST += \
 	src/xdg-desktop-portal-gtk.gresource.xml	\
@@ -44,7 +55,11 @@ EXTRA_DIST += \
         src/appchooserdialog.css                        \
         src/appchooserrow.ui                            \
         src/screenshotdialog.ui                         \
+        src/screenshotdialog.css                        \
         src/accountdialog.ui                            \
+        src/screencastwidget.ui                         \
+        src/screencastdialog.ui                         \
+        src/remotedesktopdialog.ui                      \
 	$(NULL)
 
 libexec_PROGRAMS = \
@@ -57,6 +72,8 @@ xdg_desktop_portal_gtk_SOURCES = \
 	src/utils.c				\
 	src/request.h			        \
 	src/request.c			        \
+	src/session.c   			\
+	src/session.h	        		\
 	src/filechooser.h			\
 	src/filechooser.c			\
 	src/appchooser.h			\
@@ -73,7 +90,6 @@ xdg_desktop_portal_gtk_SOURCES = \
 	src/screenshot.c			\
 	src/screenshotdialog.h		        \
 	src/screenshotdialog.c		        \
-	src/resources.c			        \
 	src/print.h				\
 	src/print.c				\
 	src/access.h				\
@@ -82,12 +98,32 @@ xdg_desktop_portal_gtk_SOURCES = \
 	src/account.c				\
 	src/accountdialog.h			\
 	src/accountdialog.c			\
+	src/email.h				\
+	src/email.c				\
         src/gtkbackports.h                      \
         src/gtkbackports.c                      \
 	src/externalwindow.h			\
 	src/externalwindow.c			\
-	$(dbus_built_sources)		        \
-	$(shell_built_sources)		        \
+	src/screencast.c			\
+	src/screencast.h			\
+	src/screencastwidget.c			\
+	src/screencastwidget.h			\
+	src/screencastdialog.c			\
+	src/screencastdialog.h			\
+	src/gnomescreencast.c			\
+	src/gnomescreencast.h			\
+	src/remotedesktop.c			\
+	src/remotedesktop.h			\
+	src/remotedesktopdialog.c		\
+	src/remotedesktopdialog.h		\
+	src/displaystatetracker.c		\
+	src/displaystatetracker.h		\
+	$(NULL)
+
+nodist_xdg_desktop_portal_gtk_SOURCES = \
+	src/resources.c				\
+	$(dbus_built_sources)			\
+	$(shell_built_sources)			\
 	$(NULL)
 
 if HAVE_GTK_X11
@@ -111,4 +147,28 @@ xdg_desktop_portal_gtk_CPPFLAGS = \
 	-DLOCALEDIR=\"$(localedir)\"                    \
 	-I$(top_srcdir)/src				\
 	-I$(top_builddir)/src				\
+	$(NULL)
+
+noinst_PROGRAMS = \
+        testappchooser
+
+testappchooser_LDADD = $(GTK_LIBS) $(GTK_X11_LIBS)
+testappchooser_CFLAGS = $(GTK_CFLAGS) $(GTK_X11_CFLAGS)
+testappchooser_CPPFLAGS = \
+	-DGETTEXT_PACKAGE=\"$(GETTEXT_PACKAGE)\"        \
+	-DLOCALEDIR=\"$(localedir)\"                    \
+	-I$(top_srcdir)/src				\
+	-I$(top_builddir)/src				\
+	$(NULL)
+
+testappchooser_SOURCES = \
+        src/testappchooser.c                    \
+	src/appchooserrow.h			\
+	src/appchooserrow.c			\
+	src/appchooserdialog.h		        \
+	src/appchooserdialog.c		        \
+        $(NULL)
+
+nodist_testappchooser_SOURCES = \
+	src/resources.c				\
 	$(NULL)
